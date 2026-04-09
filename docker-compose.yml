@@ -1,0 +1,12 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+
+  worker:
+    build: .
+    command: celery -A worker.celery_app worker --loglevel=info --pool=solo
+
+  redis:
+    image: redis:alpine
